@@ -6,14 +6,14 @@
     <groupId>com.mogobiz</groupId>
     <artifactId>mogobiz-grails</artifactId>
     <packaging>pom</packaging>
-    <version>1.0.0-RC2</version>
+    <version>1.0.0-SNAPSHOT</version>
 
     <name>mogobiz grails</name>
     <description>mogobiz grails</description>
 
     <modules>
-        <module>../mogobiz-rivers</module>
         <module>../mogobiz-tools</module>
+        <module>../mogobiz-rivers</module>
         <module>../mogobiz-core</module>
         <module>../mogobiz-extensions</module>
         <module>../mogobiz-admin</module>
@@ -725,6 +725,31 @@
                     <artifactId>maven-deploy-plugin</artifactId>
                     <version>2.8.2</version>
                 </plugin>
+                <plugin>
+                    <groupId>external.atlassian.jgitflow</groupId>
+                    <artifactId>jgitflow-maven-plugin</artifactId>
+                    <version>1.0-m5.1</version>
+                    <configuration>
+                        <flowInitContext>
+                            <masterBranchName>master</masterBranchName>
+                            <developBranchName>development</developBranchName>
+                            <featureBranchPrefix>feature-</featureBranchPrefix>
+                            <releaseBranchPrefix>release-</releaseBranchPrefix>
+                            <hotfixBranchPrefix>hotfix-</hotfixBranchPrefix>
+                            <versionTagPrefix>tag-</versionTagPrefix>
+                        </flowInitContext>
+                        <releaseVersion>${release.version}</releaseVersion>
+                        <autoVersionSubmodules>true</autoVersionSubmodules>
+                        <startCommit>master</startCommit>
+                        <enableSshAgent>true</enableSshAgent>
+                        <allowUntracked>true</allowUntracked>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>versions-maven-plugin</artifactId>
+                    <version>2.2</version>
+                </plugin>
             </plugins>
         </pluginManagement>
     </build>
@@ -772,6 +797,7 @@
         <postgresql.version>9.1-901.jdbc4</postgresql.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>${project.build.sourceEncoding}</project.reporting.outputEncoding>
+        <release.version>1.0.0</release.version>
     </properties>
 
 </project>
